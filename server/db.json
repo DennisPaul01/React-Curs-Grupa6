@@ -38,24 +38,21 @@
   "faculties": [
     {
       "id": 1,
-      "name": "Faculty of Math",
-      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi nisi enim atque optio quae accusantium fuga aliquam fugit voluptatem ad eaque facere, consequuntur temporibus odio pariatur dicta molestias ipsum? Laborum."
+      "name": "Faculty of Computer Science",
+      "description": "The Faculty of Computer Science offers a wide range of computer science programs and research opportunities.",
+      "history": "Founded in 1985, the Faculty of Computer Science has a rich history of academic excellence."
     },
     {
       "id": 2,
-      "name": "Faculty of Physics",
-      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi nisi enim atque optio quae accusantium fuga aliquam fugit voluptatem ad eaque facere, consequuntur temporibus odio pariatur dicta molestias ipsum? Laborum."
+      "name": "Faculty of Automation",
+      "description": "The Faculty of Automation specializes in automation engineering and robotics.",
+      "history": "Established in 1990, the Faculty of Automation has a strong tradition of innovation."
     },
     {
       "id": 3,
-      "name": "Faculty of Science",
-      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi nisi enim atque optio quae accusantium fuga aliquam fugit voluptatem ad eaque facere, consequuntur temporibus odio pariatur dicta molestias ipsum? Laborum."
-    },
-    {
-      "id": 4,
-      "name": "Faculty",
-      "description": "Faculty descr",
-      "history": "What a rich history"
+      "name": "Faculty of Neural Networks",
+      "description": "The Faculty of Neural Networks focuses on neural network research and artificial intelligence.",
+      "history": "Founded in 2001, the Faculty of Neural Networks is a leader in AI education and research."
     }
   ]
 }

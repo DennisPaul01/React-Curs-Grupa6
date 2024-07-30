@@ -4,8 +4,9 @@ import './Sidebar.css';
 import { useEffect } from 'react';
 import SidebarToggle from './SidebarToggle/SidebarToggle';
 import { clsx } from 'clsx';
+import MenuItem from 'components/MenuItem';
 
-import React from 'react'
+import React from 'react';
 import useToggle from 'hooks/useToggle';
 
 export default function Sidebar(props) {
@@ -23,25 +24,32 @@ export default function Sidebar(props) {
   ];
 
   useEffect(() => {
-    setTimeout(() => console.log('Am inceput numaratoarea', 1000))
+    setTimeout(() => console.log('Am inceput numaratoarea', 1000));
 
     return () => {
       clearTimeout();
-    }
-  }, [])
-
+    };
+  }, []);
 
   return (
-    <aside className={clsx("sidebar", !isSidebarExpanded && "sidebar--collapsed")}>
+    <aside
+      className={clsx('sidebar', !isSidebarExpanded && 'sidebar--collapsed')}
+    >
       <SidebarToggle handleClick={handleClick} isExpanded={isSidebarExpanded} />
 
       {isSidebarExpanded && (
-
         <>
           <div className="sidebar-brand"></div>
-          <Menu items={menuConfig} />
+          <ul className="sidebar-menu">
+            {menuConfig.map((el, index) => {
+              return <MenuItem key={index} item={el} isActive={index === 0} />;
+            })}
+          </ul>
         </>
       )}
     </aside>
   );
 }
+
+// ul > li > a - ok
+// ul > a > li - not ok
