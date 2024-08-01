@@ -2,6 +2,7 @@ import React from 'react';
 import data from '../../utils/data.json';
 import Paper from 'components/Paper';
 import { useParams } from 'react-router-dom';
+import styles from './DescriptionContent.module.css';
 
 export default function DescriptionContent() {
   const { facultyName } = useParams();
@@ -13,7 +14,7 @@ export default function DescriptionContent() {
 
   return (
     <Paper>
-      <p>{faculty?.description}</p>
+      <p className={styles.text}>{faculty?.description}</p>
     </Paper>
   );
 }

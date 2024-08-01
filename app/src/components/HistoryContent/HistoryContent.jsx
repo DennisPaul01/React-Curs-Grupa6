@@ -2,6 +2,7 @@ import React from 'react';
 import data from '../../utils/data.json';
 import Paper from 'components/Paper';
 import { useParams } from 'react-router-dom';
+import styles from './HistoryContent.module.css';
 
 export default function HistoryContent() {
   const { facultyName } = useParams();
@@ -11,7 +12,7 @@ export default function HistoryContent() {
   );
   return (
     <Paper>
-      <p>{faculty?.history}</p>
+      <p className={styles.text}>{faculty?.history}</p>
     </Paper>
   );
 }
