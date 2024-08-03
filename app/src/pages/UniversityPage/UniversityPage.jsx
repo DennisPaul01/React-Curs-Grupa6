@@ -22,6 +22,7 @@ export default function UniversityPage() {
   return (
     <>
       <input id="inputForRef" ref={inputRef} />
+
       <button onClick={() => changeIsTrueRef()}> Toggle Value </button>
       <h1 className="page-title">University Information</h1>
       <University />

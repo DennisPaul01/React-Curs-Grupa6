@@ -9,7 +9,7 @@ import axios from 'axios';
 import Loading from 'components/common/Loading';
 import Alert from 'components/common/Alert';
 import useToggle from 'hooks/useToggle';
-import { useDebounce } from "@uidotdev/usehooks";
+import { useDebounce } from '@uidotdev/usehooks';
 
 axios.defaults.baseURL = 'http://localhost:3001';
 
@@ -60,23 +60,23 @@ export default function TutorsList(props) {
     ));
   }
 
-  function handleChange (evt) {
+  function handleChange(evt) {
     const { name, value } = evt.target;
     setFormData({
       ...formData,
-      [name]: value
-    })
-  };
+      [name]: value,
+    });
+  }
 
-  function handleSubmit (evt) {
+  function handleSubmit(evt) {
     evt.preventDefault();
 
     addTutor();
-  };
+  }
 
-  function getTutorsCount (tutors) {
+  function getTutorsCount(tutors) {
     return tutors.length;
-  };
+  }
 
   async function deleteTutor(id) {
     try {
@@ -96,7 +96,7 @@ export default function TutorsList(props) {
       const response = await axios.post('/tutors', data);
 
       setTutors([...tutors, response.data]);
-      setFormData( { ...INITIAL_FORM_STATE })
+      setFormData({ ...INITIAL_FORM_STATE });
     } catch (error) {
       setError('Tutorele nu a putut fi adaugat.');
     }
@@ -104,7 +104,9 @@ export default function TutorsList(props) {
 
   const filteredTutorsList = tutors.filter(tutor => {
     return (
-      tutor.firstName.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
+      tutor.firstName
+        .toLowerCase()
+        .includes(debouncedSearchTerm.toLowerCase()) ||
       tutor.lastName.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
     );
   });
@@ -116,17 +118,13 @@ export default function TutorsList(props) {
         type="text"
         name="searchTerm"
         value={searchTerm}
-        onChange={e =>
-          setSearchTerm(e.target.value)
-        }
+        onChange={e => setSearchTerm(e.target.value)}
       />
       <div className={styles.list}>
         {loading && <Loading />}
         {error && <Alert message={error} />}
         {renderList(filteredTutorsList)}
-        <p>
-          Number of tutors found {getTutorsCount(filteredTutorsList)}
-        </p>
+        <p>Number of tutors found {getTutorsCount(filteredTutorsList)}</p>
         <p>Number of tutors {getTutorsCount(tutors)} </p>
       </div>
 
