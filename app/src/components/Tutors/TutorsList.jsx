@@ -11,7 +11,8 @@ import Alert from 'components/common/Alert';
 import useToggle from 'hooks/useToggle';
 import { useDebounce } from '@uidotdev/usehooks';
 import { useSelector, useDispatch } from 'react-redux';
-import { addTutor, deleteTutor } from '../../redux/tutors/actions';
+// import { deleteTutor } from '../../redux/tutors/actions';
+import { addTutor, deleteTutor } from '../../redux/tutorsSlice';
 import { getTutors } from '../../redux/tutors/selectors';
 
 axios.defaults.baseURL = 'http://localhost:3001';
@@ -35,26 +36,25 @@ export default function TutorsList(props) {
   const [formData, setFormData] = useState({ ...INITIAL_FORM_STATE });
 
   const tutorsRedux = useSelector(getTutors);
-  console.log(tutorsRedux);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const response = await axios.get('/tutors');
-        setTutors(response.data);
-        setError(null);
-      } catch (error) {
-        console.error(error.message);
-        setError('Lista de tutori nu a putut fi obtinuta.');
-      } finally {
-        setLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       setLoading(true);
+  //       const response = await axios.get('/tutors');
+  //       setTutors(response.data);
+  //       setError(null);
+  //     } catch (error) {
+  //       console.error(error.message);
+  //       setError('Lista de tutori nu a putut fi obtinuta.');
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   function renderList(items) {
     return items.map(item => (
@@ -77,6 +77,7 @@ export default function TutorsList(props) {
   function handleSubmit(evt) {
     evt.preventDefault();
     const data = formData;
+    console.log(data);
     dispatch(addTutor(data));
     // addTutor();
   }

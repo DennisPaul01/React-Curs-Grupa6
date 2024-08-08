@@ -1,3 +1,6 @@
+import { addTutor, deleteTutor } from './actions';
+import { createReducer } from '@reduxjs/toolkit';
+
 const initialStateTutors = {
   tutors: [
     {
@@ -31,20 +34,33 @@ const initialStateTutors = {
   ],
 };
 
-export const tutorsReducer = (state = initialStateTutors, action) => {
-  console.log(action.type);
-  console.log(action.payload);
-  switch (action.type) {
-    case 'tutors/addTutor': {
-      return { ...state, tutors: [...state.tutors, action.payload] };
-    }
-    case 'tutors/deleteTutor': {
-      return {
-        ...state,
-        tutors: state.tutors.filter(tutor => tutor.id !== action.payload.id),
-      };
-    }
-    default:
-      return state;
-  }
-};
+// ! fara redux toolkit
+// export const tutorsReducer = (state = initialStateTutors, action) => {
+//   switch (action.type) {
+//     case addTutor.type: {
+//       return { ...state, tutors: [...state.tutors, action.payload] };
+//     }
+//     case deleteTutor.type: {
+//       return {
+//         ...state,
+//         tutors: state.tutors.filter(tutor => tutor.id !== action.payload.id),
+//       };
+//     }
+//     default:
+//       return state;
+//   }
+// };
+
+// * cu redux-toolkit (createReducer)
+export const tutorsReducer = createReducer(initialStateTutors, builder => {
+  builder.addCase(addTutor, (state, action) => {
+    state.tutors.push(action.payload);
+  });
+  builder.addCase(deleteTutor, (state, action) => {
+    console.log(action);
+    const index = state.tutors.findIndex(
+      tutor => tutor.id === action.payload.id
+    );
+    state.tutors.splice(index, 1);
+  });
+});
