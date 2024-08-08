@@ -6,10 +6,8 @@ import University from 'components/University/University';
 
 export default function UniversityPage() {
   const isTrueRef = useRef(true);
-  console.log(isTrueRef);
 
   const inputRef = useRef(null);
-  console.dir(inputRef);
 
   function changeIsTrueRef() {
     if (!isTrueRef?.current) {

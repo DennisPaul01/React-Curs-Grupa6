@@ -23,14 +23,6 @@ export default function Sidebar(props) {
     },
   ];
 
-  useEffect(() => {
-    setTimeout(() => console.log('Am inceput numaratoarea', 1000));
-
-    return () => {
-      clearTimeout();
-    };
-  }, []);
-
   return (
     <aside
       className={clsx('sidebar', !isSidebarExpanded && 'sidebar--collapsed')}
