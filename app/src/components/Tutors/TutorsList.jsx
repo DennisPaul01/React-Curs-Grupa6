@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import Tutor from './Tutor';
 import Button from 'components/Button';
@@ -11,9 +12,12 @@ import Alert from 'components/common/Alert';
 import useToggle from 'hooks/useToggle';
 import { useDebounce } from '@uidotdev/usehooks';
 import { useSelector, useDispatch } from 'react-redux';
-// import { deleteTutor } from '../../redux/tutors/actions';
-import { addTutor, deleteTutor } from '../../redux/tutorsSlice';
-import { getTutors } from '../../redux/tutors/selectors';
+import {
+  getTutors,
+  getTutorsError,
+  getTutorsLoading,
+} from '../../redux/selectors';
+import { fetchTutors, addTutor, deleteTutor } from '../../redux/operations';
 
 axios.defaults.baseURL = 'http://localhost:3001';
 
@@ -26,16 +30,19 @@ const INITIAL_FORM_STATE = {
 };
 
 export default function TutorsList(props) {
-  const [tutors, setTutors] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  // const [tutors, setTutors] = useState([]);
+  // const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const debouncedSearchTerm = useDebounce(searchTerm, 1000);
 
   const [isFormVisible, toggleForm] = useToggle(false);
   const [formData, setFormData] = useState({ ...INITIAL_FORM_STATE });
 
-  const tutorsRedux = useSelector(getTutors);
+  const tutors = useSelector(getTutors);
+  const loading = useSelector(getTutorsLoading);
+  const error = useSelector(getTutorsError);
+
   const dispatch = useDispatch();
 
   // useEffect(() => {
@@ -55,6 +62,9 @@ export default function TutorsList(props) {
 
   //   fetchData();
   // }, []);
+  useEffect(() => {
+    dispatch(fetchTutors());
+  }, [dispatch]);
 
   function renderList(items) {
     return items.map(item => (
@@ -77,9 +87,9 @@ export default function TutorsList(props) {
   function handleSubmit(evt) {
     evt.preventDefault();
     const data = formData;
-    console.log(data);
     dispatch(addTutor(data));
-    // addTutor();
+    setFormData({ ...INITIAL_FORM_STATE });
+    toggleForm();
   }
 
   function getTutorsCount(tutors) {
@@ -110,7 +120,7 @@ export default function TutorsList(props) {
   //   }
   // }
 
-  const filteredTutorsList = tutorsRedux.filter(tutor => {
+  const filteredTutorsList = tutors.filter(tutor => {
     return (
       tutor.firstName
         .toLowerCase()
