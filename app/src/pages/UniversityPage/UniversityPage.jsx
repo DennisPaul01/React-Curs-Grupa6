@@ -3,6 +3,7 @@ import { useRef } from 'react';
 
 import Tutors from 'components/Tutors';
 import University from 'components/University/University';
+import Faculties from 'components/Faculties';
 
 export default function UniversityPage() {
   const isTrueRef = useRef(true);
@@ -25,6 +26,7 @@ export default function UniversityPage() {
       <h1 className="page-title">University Information</h1>
       <University />
       <Tutors />
+      <Faculties />
     </>
   );
 }

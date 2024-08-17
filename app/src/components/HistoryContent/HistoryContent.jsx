@@ -1,15 +1,17 @@
 import React from 'react';
-import data from '../../utils/data.json';
 import Paper from 'components/Paper';
 import { useParams } from 'react-router-dom';
 import styles from './HistoryContent.module.css';
 
+import { useSelector } from 'react-redux';
+import { selectFaculties } from '../../redux/selectors';
+
 export default function HistoryContent() {
   const { facultyName } = useParams();
 
-  const faculty = data?.faculties?.find(
-    faculty => faculty.name === facultyName
-  );
+  const faculties = useSelector(selectFaculties);
+
+  const faculty = faculties?.find(faculty => faculty.name === facultyName);
   return (
     <Paper>
       <p className={styles.text}>{faculty?.history}</p>

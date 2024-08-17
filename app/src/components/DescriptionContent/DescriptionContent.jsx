@@ -1,16 +1,17 @@
 import React from 'react';
-import data from '../../utils/data.json';
+
 import Paper from 'components/Paper';
 import { useParams } from 'react-router-dom';
 import styles from './DescriptionContent.module.css';
 
+import { useSelector } from 'react-redux';
+import { selectFaculties } from '../../redux/selectors';
+
 export default function DescriptionContent() {
   const { facultyName } = useParams();
-  console.log(facultyName);
+  const faculties = useSelector(selectFaculties);
 
-  const faculty = data?.faculties?.find(
-    faculty => faculty.name === facultyName
-  );
+  const faculty = faculties?.find(faculty => faculty.name === facultyName);
 
   return (
     <Paper>

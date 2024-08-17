@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Tutor from './Tutor';
 import Button from 'components/Button';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { FaPlusCircle } from 'react-icons/fa';
 import styles from './TutorsList.module.css';
 import Input from 'components/common/Input/Input';
@@ -13,11 +13,11 @@ import useToggle from 'hooks/useToggle';
 import { useDebounce } from '@uidotdev/usehooks';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  getTutors,
-  getTutorsError,
-  getTutorsLoading,
+  selectTutors,
+  selectTutorsError,
+  selectTutorsLoading,
 } from '../../redux/selectors';
-import { fetchTutors, addTutor, deleteTutor } from '../../redux/operations';
+import { addTutor, deleteTutor } from '../../redux/operations';
 
 axios.defaults.baseURL = 'http://localhost:3001';
 
@@ -29,7 +29,7 @@ const INITIAL_FORM_STATE = {
   city: '',
 };
 
-export default function TutorsList(props) {
+export default function TutorsList() {
   // const [tutors, setTutors] = useState([]);
   // const [loading, setLoading] = useState(false);
   // const [error, setError] = useState(null);
@@ -39,32 +39,11 @@ export default function TutorsList(props) {
   const [isFormVisible, toggleForm] = useToggle(false);
   const [formData, setFormData] = useState({ ...INITIAL_FORM_STATE });
 
-  const tutors = useSelector(getTutors);
-  const loading = useSelector(getTutorsLoading);
-  const error = useSelector(getTutorsError);
+  const tutors = useSelector(selectTutors);
+  const loading = useSelector(selectTutorsLoading);
+  const error = useSelector(selectTutorsError);
 
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       setLoading(true);
-  //       const response = await axios.get('/tutors');
-  //       setTutors(response.data);
-  //       setError(null);
-  //     } catch (error) {
-  //       console.error(error.message);
-  //       setError('Lista de tutori nu a putut fi obtinuta.');
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
-  useEffect(() => {
-    dispatch(fetchTutors());
-  }, [dispatch]);
 
   function renderList(items) {
     return items.map(item => (

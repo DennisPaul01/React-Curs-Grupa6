@@ -3,7 +3,9 @@ import React, { Suspense, lazy } from 'react';
 import Sidebar from './Sidebar';
 import data from '../utils/data.json';
 import { useRef, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
+import { fetchFaculties, fetchTutors } from '../redux/operations';
 // import News from './News';
 import HistoryContent from './HistoryContent/HistoryContent';
 import DescriptionContent from './DescriptionContent/DescriptionContent';
@@ -23,9 +25,12 @@ const LazyFacultyContent = lazy(() =>
 );
 
 export default function App() {
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    localStorage.setItem('tutors', JSON.stringify(data?.tutors));
-  }, []);
+    dispatch(fetchFaculties());
+    dispatch(fetchTutors());
+  }, [dispatch]);
 
   return (
     <div className="wrapper">
