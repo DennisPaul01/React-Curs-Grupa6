@@ -1,5 +1,7 @@
 # Model pentru un proiect React
 
+## Puteti vedea codul de la fiecare lectie individual schimband branch-ul
+
 Acest proiect a fost creat cu ajutorul
 [Create React App](https://github.com/facebook/create-react-app). Pentru prezentări
 și configurarea de funcții suplimentare
