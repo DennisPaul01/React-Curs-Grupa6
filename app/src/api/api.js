@@ -19,4 +19,14 @@ const resurseApi = resursa => {
 const tutorsApi = resurseApi('tutors');
 const facultiesApi = resurseApi('faculties');
 
+// const BASE_URL_LOGIN = 'https://connections-api.goit.global/';
+
+// const userApi = {
+//   signup: async (data) => {
+//     const response = await
+//   },
+//   login: () => {},
+//   logout: () => {},
+// };
+
 export { tutorsApi, facultiesApi };

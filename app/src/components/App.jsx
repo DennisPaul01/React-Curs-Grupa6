@@ -24,6 +24,11 @@ const LazyFacultyContent = lazy(() =>
   import('./FacultyContent/FacultyContent')
 );
 
+const LazyLoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
+const LazyRegisterPage = lazy(() =>
+  import('../pages/RegisterPage/RegisterPage')
+);
+
 export default function App() {
   const dispatch = useDispatch();
 
@@ -39,6 +44,8 @@ export default function App() {
         <Suspense fallback={<LoadingPage />}>
           <Routes>
             <Route path="/" element={<LazyUniversityPage />} />
+            <Route path="/login" element={<LazyLoginPage />} />
+            <Route path="/register" element={<LazyRegisterPage />} />
             <Route path="/university" element={<LazyUniversityPage />} />
             <Route path="/faculties" element={<LazyFacultiesPage />} />
             <Route

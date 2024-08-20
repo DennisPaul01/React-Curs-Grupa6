@@ -1,7 +1,8 @@
-import Menu from '../Menu';
 import { HiBookOpen, HiAcademicCap } from 'react-icons/hi';
+import { BiSolidLogOut } from 'react-icons/bi';
+import { FaUserCircle } from 'react-icons/fa';
+
 import './Sidebar.css';
-import { useEffect } from 'react';
 import SidebarToggle from './SidebarToggle/SidebarToggle';
 import { clsx } from 'clsx';
 import MenuItem from 'components/MenuItem';
@@ -9,10 +10,12 @@ import MenuItem from 'components/MenuItem';
 import React from 'react';
 import useToggle from 'hooks/useToggle';
 
-export default function Sidebar(props) {
+const MenuItemStyle = clsx('sidebar__menu-item');
+
+export default function Sidebar() {
   const [isSidebarExpanded, handleClick] = useToggle(true);
 
-  const menuConfig = [
+  const menuConfigLogged = [
     {
       icon: <HiBookOpen />,
       name: 'University',
@@ -20,6 +23,15 @@ export default function Sidebar(props) {
     {
       icon: <HiAcademicCap />,
       name: 'Faculties',
+    },
+  ];
+
+  const menuConfigNotLogged = [
+    {
+      name: 'Login',
+    },
+    {
+      name: 'Register',
     },
   ];
 
@@ -33,9 +45,17 @@ export default function Sidebar(props) {
         <>
           <div className="sidebar-brand"></div>
           <ul className="sidebar-menu">
-            {menuConfig.map((el, index) => {
+            {menuConfigLogged.map((el, index) => {
               return <MenuItem key={index} item={el} isActive={index === 0} />;
             })}
+            {false && (
+              <>
+                <li className={MenuItemStyle} style={{ marginTop: 'auto' }}>
+                  {<FaUserCircle />}
+                </li>
+                <li className={MenuItemStyle}>{<BiSolidLogOut />}Log out</li>
+              </>
+            )}
           </ul>
         </>
       )}
