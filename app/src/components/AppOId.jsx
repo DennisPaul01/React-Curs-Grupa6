@@ -6,9 +6,11 @@ export function AppOld() {
   const showHeading = true;
   const showMenu = true;
 
-  function renderHeading() {
+  renderHeading();
+
+  const renderHeading = () => {
     return <h1>Heading</h1>;
-  }
+  };
 
   return (
     <div>
@@ -16,7 +18,11 @@ export function AppOld() {
       {/* {isVisible ? 'Vizibil' : 'Invizibil'} */}
       {isVisible && 'Vizibil'}
       {showHeading && renderHeading()}
-      <Menu title="Titlul Meniului" items={['item 1', 'item 2', 'item 3']} isVisible={showMenu} />
+      <Menu
+        title="Titlul Meniului"
+        items={['item 1', 'item 2', 'item 3']}
+        isVisible={showMenu}
+      />
       <Container>
         <div
           style={{

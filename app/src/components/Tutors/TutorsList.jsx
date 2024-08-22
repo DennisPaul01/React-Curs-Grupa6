@@ -75,30 +75,6 @@ export default function TutorsList() {
     return tutors.length;
   }
 
-  // async function deleteTutor(id) {
-  //   try {
-  //     await axios.delete(`/tutors/${id}`);
-  //     const data = tutors.filter(el => el.id !== id);
-
-  //     setTutors([...data]);
-  //   } catch (error) {
-  //     setError('Tutorele nu a putut fi sters.');
-  //   }
-  // }
-
-  // async function addTutor() {
-  //   const data = formData;
-
-  //   try {
-  //     const response = await axios.post('/tutors', data);
-
-  //     setTutors([...tutors, response.data]);
-  //     setFormData({ ...INITIAL_FORM_STATE });
-  //   } catch (error) {
-  //     setError('Tutorele nu a putut fi adaugat.');
-  //   }
-  // }
-
   const filteredTutorsList = tutors.filter(tutor => {
     return (
       tutor.firstName
